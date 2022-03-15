@@ -26,7 +26,7 @@ const TasksList: FC<TasksListProps> = ({ tasks, setTasks }) => {
       a.priority < b.priority //sorting by priority (the higher the priority the earlier it will be displayed)
         ? 1
         : a.priority === b.priority
-        ? a.description > b.description //if priorities are equal, sort by description (A-Z)
+        ? a.description.toLocaleLowerCase() > b.description.toLocaleLowerCase() //if priorities are equal, sort by description (A-Z, ignoring case)
           ? 1
           : -1
         : -1
@@ -53,14 +53,11 @@ const TasksList: FC<TasksListProps> = ({ tasks, setTasks }) => {
                 <h2>
                   <AccordionButton border='1px solid grey'>
                     <Box flex='1' textAlign='left'>
-                      {isExpanded ? 'Hide' : 'Show'} {completedTasks.length}{' '}
-                      completed tasks
+                      {`${isExpanded ? 'Hide' : 'Show'} ${
+                        completedTasks.length
+                      } completed tasks`}
                     </Box>
-                    {isExpanded ? (
-                      <ChevronUpIcon fontSize='12px' />
-                    ) : (
-                      <ChevronDownIcon fontSize='12px' />
-                    )}
+                    {isExpanded ? <ChevronUpIcon /> : <ChevronDownIcon />}
                   </AccordionButton>
                 </h2>
                 <AccordionPanel w='100%'>

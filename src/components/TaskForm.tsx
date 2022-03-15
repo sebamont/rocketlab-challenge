@@ -40,12 +40,12 @@ const TaskForm: FC<TaskFormProps> = ({ addTask }) => {
   const onClickAddTask = () => {
     const newTask: Task = {
       date: new Date(),
-      description: newTaskValue,
+      description: newTaskValue.trim(), //trim to remove whitespace
       priority: newTaskPriority,
       completed: false,
     }
     addTask(newTask)
-    setNewTaskPriority('2')
+    setNewTaskPriority('2') //since is not a form with a submit button, we need to reset the state.
     setNewTaskValue('')
     if (inputRef.current) {
       inputRef.current.focus()
@@ -98,7 +98,7 @@ const TaskForm: FC<TaskFormProps> = ({ addTask }) => {
               }
               id='priority'
             >
-              <option value={'1'}> Low</option>
+              <option value={'1'}>Low</option>
               <option value={'2'}>Medium</option>
               <option value={'3'}>High</option>
             </Select>

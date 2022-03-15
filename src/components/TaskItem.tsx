@@ -186,7 +186,7 @@ const TaskItem: FC<TaskItemProps> = ({ task, setTasks }) => {
           {getPriorityInfo().icon}
         </Tooltip>
         {!isEditing && !task.completed && (
-          <Tooltip label={'Delete'} openDelay={500}>
+          <Tooltip label={'Edit task description'} openDelay={500}>
             <IconButton
               colorScheme={'orange'}
               icon={<EditIcon />}
