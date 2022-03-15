@@ -1,26 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from 'react'
 
-function App() {
+import { Container } from '@chakra-ui/react'
+
+import { AddTask, Header, Navbar, TaskList, TasksInfo } from './components'
+import { Task } from './types'
+
+const App = () => {
+  const [tasks, setTasks] = useState<Task[]>([])
+
+  const addTask = (task: Task) => {
+    setTasks([...tasks, task])
+  }
+
+  useEffect(() => {
+    //loading tasks from localStorage
+    const storedTasks = localStorage.getItem('tasks')
+    if (storedTasks) {
+      setTasks(JSON.parse(storedTasks))
+    }
+  }, [])
+
+  useEffect(() => {
+    //updating localStorage when tasks change
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+  }, [tasks])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <Navbar />
+      <Container
+        centerContent
+        pt={3}
+        maxW='container.md'
+        maxH={'calc(100vh - 45px)'} // 45px = navbar height
+        overflowY='hidden'
+      >
+        <Header />
+        <AddTask addTask={addTask} />
+        <TasksInfo tasks={tasks} />
+        <TaskList tasks={tasks} setTasks={setTasks} />
+      </Container>
+    </>
+  )
 }
 
-export default App;
+export default App
