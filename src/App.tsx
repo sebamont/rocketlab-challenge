@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 import { Container } from '@chakra-ui/react'
 
-import { AddTask, Header, Navbar, TaskList, TasksInfo } from './components'
+import { TaskForm, Header, Navbar, TasksList, TasksInfo } from './components'
 import { Task } from './types'
 
 const App = () => {
@@ -36,9 +36,9 @@ const App = () => {
         overflowY='hidden'
       >
         <Header />
-        <AddTask addTask={addTask} />
+        <TaskForm addTask={addTask} />
         <TasksInfo tasks={tasks} />
-        <TaskList tasks={tasks} setTasks={setTasks} />
+        <TasksList tasks={tasks} setTasks={setTasks} />
       </Container>
     </>
   )

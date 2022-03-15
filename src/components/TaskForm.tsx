@@ -14,13 +14,13 @@ import {
   useBreakpointValue,
 } from '@chakra-ui/react'
 
-import { Task, TaskPriority } from '../../types'
+import { Task, TaskPriority } from '../types'
 
-interface AddTaskProps {
+interface TaskFormProps {
   addTask: (task: Task) => void
 }
 
-const AddTask: FC<AddTaskProps> = ({ addTask }) => {
+const TaskForm: FC<TaskFormProps> = ({ addTask }) => {
   const [newTaskValue, setNewTaskValue] = useState('')
   const [newTaskPriority, setNewTaskPriority] = useState<TaskPriority>('2')
   const inputRef = useRef<HTMLInputElement | null>(null)
@@ -119,4 +119,4 @@ const AddTask: FC<AddTaskProps> = ({ addTask }) => {
   )
 }
 
-export default AddTask
+export default TaskForm

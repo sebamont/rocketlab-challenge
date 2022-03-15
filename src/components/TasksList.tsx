@@ -10,15 +10,15 @@ import {
 } from '@chakra-ui/react'
 import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
 
-import { Task } from '../../types'
-import TaskUnit from '../TaskUnit'
+import { Task } from '../types'
+import TaskItem from './TaskItem'
 
-interface TaskListProps {
+interface TasksListProps {
   tasks: Task[]
   setTasks: React.Dispatch<React.SetStateAction<Task[]>>
 }
 
-const TaskList: FC<TaskListProps> = ({ tasks, setTasks }) => {
+const TasksList: FC<TasksListProps> = ({ tasks, setTasks }) => {
   const completedTasks = tasks.filter((task) => task.completed)
   const pendingTasks = tasks
     .filter((task) => !task.completed)
@@ -43,7 +43,7 @@ const TaskList: FC<TaskListProps> = ({ tasks, setTasks }) => {
   return (
     <Box h='100%' w='100%' overflow='auto' id='task-list'>
       {pendingTasks.map((task, index) => (
-        <TaskUnit key={index} task={task} setTasks={setTasks} />
+        <TaskItem key={index} task={task} setTasks={setTasks} />
       ))}
       {completedTasks.length > 0 && (
         <Accordion allowMultiple my={2}>
@@ -67,7 +67,7 @@ const TaskList: FC<TaskListProps> = ({ tasks, setTasks }) => {
                   {tasks
                     .filter((task) => task.completed)
                     .map((task, index) => (
-                      <TaskUnit key={index} task={task} setTasks={setTasks} />
+                      <TaskItem key={index} task={task} setTasks={setTasks} />
                     ))}
                 </AccordionPanel>
               </>
@@ -79,4 +79,4 @@ const TaskList: FC<TaskListProps> = ({ tasks, setTasks }) => {
   )
 }
 
-export default TaskList
+export default TasksList

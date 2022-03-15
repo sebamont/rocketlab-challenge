@@ -12,8 +12,6 @@ import {
   Tooltip,
   useColorModeValue,
 } from '@chakra-ui/react'
-
-import { Task } from '../../types'
 import {
   DeleteIcon,
   ArrowDownIcon,
@@ -22,12 +20,14 @@ import {
   EditIcon,
 } from '@chakra-ui/icons'
 
-interface TaskUnitProps {
+import { Task } from '../types'
+
+interface TaskItemProps {
   task: Task
   setTasks: React.Dispatch<React.SetStateAction<Task[]>>
 }
 
-const TaskUnit: FC<TaskUnitProps> = ({ task, setTasks }) => {
+const TaskItem: FC<TaskItemProps> = ({ task, setTasks }) => {
   const [isEditing, setIsEditing] = useState(false)
   const [isDeleting, setIsDeleting] = useState(false)
   const [isMarkingAsComplete, setIsMarkingAsComplete] = useState(false)
@@ -214,4 +214,4 @@ const TaskUnit: FC<TaskUnitProps> = ({ task, setTasks }) => {
   )
 }
 
-export default TaskUnit
+export default TaskItem
