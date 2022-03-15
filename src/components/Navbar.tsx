@@ -28,7 +28,6 @@ const Navbar = () => {
           <Button onClick={toggleColorMode}>
             {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
           </Button>
-          {/* TODO change user name */}
           <Tooltip label='Seba'>
             <Avatar
               size={'sm'}
